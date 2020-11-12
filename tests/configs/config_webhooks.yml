@@ -27,6 +27,8 @@ cachet:
   token: my_token
 webhooks:
   - url: "https://push.example.com/{title}"
+    verify: True
   - url: "https://push.example.com/message?token=<apptoken>"
+    verify: True
     params:
       title: "{title}"

@@ -70,7 +70,7 @@ def configuration(config_file, mock_client, mock_logger):
 def webhooks_configuration(webhooks_config_file, mock_client, mock_logger):
     webhooks = []
     for webhook in webhooks_config_file.get("webhooks", []):
-        webhooks.append(Webhook(webhook["url"], webhook.get("params", {})))
+        webhooks.append(Webhook(webhook["url"], webhook.get("params", {}), webhook.get("json", {}), webhook["verify"]))
     yield Configuration(webhooks_config_file, 0, mock_client, webhooks)
 
 

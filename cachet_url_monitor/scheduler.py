@@ -151,7 +151,7 @@ if __name__ == "__main__":
 
     webhooks: List[Webhook] = []
     for webhook in config_data.get("webhooks", []):
-        webhooks.append(Webhook(webhook["url"], webhook.get("params", {})))
+        webhooks.append(Webhook(webhook["url"], webhook.get("params", {}), webhook.get("json", {}), webhook["verify"]))
 
     token: str = get_token(config_data["cachet"]["token"])
     api_url: str = os.environ.get("CACHET_API_URL") or config_data["cachet"]["api_url"]
