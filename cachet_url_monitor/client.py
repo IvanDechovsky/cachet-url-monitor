@@ -84,14 +84,12 @@ class CachetClient(object):
             raise exceptions.ComponentNonexistentError(component_id)
 
     def push_status(self, component_id: int, component_status: status.ComponentStatus):
-        """Pushes the status of the component to the cachet server.
-        """
+        """Pushes the status of the component to the cachet server."""
         params = {"id": component_id, "status": component_status.value}
         return requests.put(f"{self.url}/components/{component_id}", params=params, headers=self.headers)
 
     def push_metrics(self, metric_id: int, latency_time_unit: str, elapsed_time_in_seconds: int, timestamp: int):
-        """Pushes the total amount of seconds the request took to get a response from the URL.
-        """
+        """Pushes the total amount of seconds the request took to get a response from the URL."""
         value = latency_unit.convert_to_unit(latency_time_unit, elapsed_time_in_seconds)
         params = {"id": metric_id, "value": value, "timestamp": timestamp}
         return requests.post(f"{self.url}/metrics/{metric_id}/points", params=params, headers=self.headers)

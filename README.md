@@ -75,10 +75,18 @@ cachet:
       value: my_token
 webhooks:
   - url: "https://push.example.com/message?token=<apptoken>"
+    # Parameters added on as query strings
     params:
       title: "{title}"
       message: "{message}"
       priority: 5
+    # JSON Body sent with the request. Example for slack
+    json:
+      text: "{title}: {message}"
+      channel: "#slack-channel"
+    # True, False or path to certificate
+    verify: True
+
 messages:
   incident_outage: "{name} is unavailable"
   incident_operational: "{name} is operational"
